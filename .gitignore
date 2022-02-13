@@ -1,0 +1,44 @@
+node_modules
+.bsp
+a.out
+ignore
+.vagrant
+logs
+*.log
+target
+tmp
+.history
+dist
+.idea
+.metals
+*.iml
+/out
+.idea_modules
+.classpath
+.project
+/RUNNING_PID
+.settings
+.DS_Store
+test-output/
+.java-version
+build
+.vscode
+
+# hidden cross project folders
+shared/.js
+shared/.jvm
+
+# temp files
+.~*
+*~
+*.orig
+
+# eclipse
+.scala_dependencies
+.buildpath
+.target
+bin/
+journal
+snapshots
+*.rdb
+.bloop
