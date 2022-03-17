@@ -41,16 +41,19 @@ lazy val example = project
   )
 
 def seleniumConfig(sbtConfig: Configuration, port: Int) = Def.setting {
-  import _root_.io.github.bonigarcia.wdm.WebDriverManager
-  WebDriverManager.chromedriver().setup()
-
   val testJsDir = (sbtConfig / fastLinkJS / scalaJSLinkerOutputDirectory).value
   val webRoot   = s"http://localhost:$port/${testJsDir.relativeTo(baseDirectory.value).get}/"
 
   new SeleniumJSEnv(
-    new ChromeOptions().setHeadless(true),
+    headlessChrome,
     SeleniumJSEnv
       .Config()
       .withMaterializeInServer(contentDir = testJsDir.getAbsolutePath, webRoot = webRoot)
   )
+}
+
+lazy val headlessChrome = {
+  import _root_.io.github.bonigarcia.wdm.WebDriverManager
+  WebDriverManager.chromedriver().setup()
+  new ChromeOptions().setHeadless(true)
 }
