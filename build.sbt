@@ -33,28 +33,24 @@ lazy val example = project
   .settings(
     scalaJSUseMainModuleInitializer := true,
     scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.ESModule).withSourceMap(false) },
-    Test / jsEnv                    := {
-      new SeleniumJSEnv(
-        new ChromeOptions().setHeadless(true),
-        seleniumConfig(
-          port = 3000,
-          baseDir = baseDirectory.value,
-          testJsDir = (Test / fastLinkJS / scalaJSLinkerOutputDirectory).value
-        )
-      )
-    },
+    Compile / jsEnv                 := seleniumConfig(Compile, port = 3000).value,
+    Test / jsEnv                    := seleniumConfig(Test, port = 3000).value,
     libraryDependencies ++= Seq(
       "org.scalatest" %%% "scalatest" % "3.2.11" % Test
     )
   )
 
-def seleniumConfig(port: Int, baseDir: File, testJsDir: File): SeleniumJSEnv.Config = {
+def seleniumConfig(sbtConfig: Configuration, port: Int) = Def.setting {
   import _root_.io.github.bonigarcia.wdm.WebDriverManager
   WebDriverManager.chromedriver().setup()
-  SeleniumJSEnv
-    .Config()
-    .withMaterializeInServer(
-      testJsDir.getAbsolutePath,
-      s"http://localhost:$port/${testJsDir.relativeTo(baseDir).get}/"
-    )
+
+  val testJsDir = (sbtConfig / fastLinkJS / scalaJSLinkerOutputDirectory).value
+  val webRoot   = s"http://localhost:$port/${testJsDir.relativeTo(baseDirectory.value).get}/"
+
+  new SeleniumJSEnv(
+    new ChromeOptions().setHeadless(true),
+    SeleniumJSEnv
+      .Config()
+      .withMaterializeInServer(contentDir = testJsDir.getAbsolutePath, webRoot = webRoot)
+  )
 }
