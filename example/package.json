@@ -7,9 +7,9 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "camelcase": "^6.3.0"
+    "camelcase": "^7.0.0"
   },
   "devDependencies": {
-    "vite": "^2.8.2"
+    "vite": "^3.1.4"
   }
 }

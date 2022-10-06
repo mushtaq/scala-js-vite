@@ -33,8 +33,8 @@ lazy val example = project
   .settings(
     scalaJSUseMainModuleInitializer := true,
     scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.ESModule).withSourceMap(false) },
-    Compile / jsEnv                 := seleniumConfig(Compile, port = 3000).value,
-    Test / jsEnv                    := seleniumConfig(Test, port = 3000).value,
+    Compile / jsEnv                 := seleniumConfig(Compile, port = 5173).value,
+    Test / jsEnv                    := seleniumConfig(Test, port = 5173).value,
     libraryDependencies ++= Seq(
       "org.scalatest" %%% "scalatest" % "3.2.11" % Test
     )

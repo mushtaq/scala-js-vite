@@ -13,7 +13,7 @@ $ npm install
 Start dev server in terminal-1
 ```
 $ cd example
-$ npm dev start
+$ npm run dev
 ```
 
 Setup incremental Scala.js linking in terminal-2
@@ -32,7 +32,7 @@ Make changes in Main.scala and watch HMR(Hot Module Reloading) working in the co
 Ensure dev server is running in terminal-1
 ```
 $ cd example
-$ npm dev start
+$ npm run dev
 ```
 
 Run Scala.js tests in terminal-2
@@ -57,7 +57,7 @@ sbt:example> fullLinkJS
 Run npm build
 ```
 $ cd example
-$ npm dev build
+$ npm run build
 ```
 
 Verify the build with a static web server
