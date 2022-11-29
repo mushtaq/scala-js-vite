@@ -8,19 +8,17 @@ inThisBuild(
     organization      := "com.github.mushtaq.scala-js-vite",
     organizationName  := "ThoughtWorks",
     scalafmtOnCompile := true,
-    scalaVersion      := "2.13.10",
+    scalaVersion      := "3.2.1",
     scalacOptions ++= Seq(
       "-encoding",
       "UTF-8",
       "-feature",
       "-unchecked",
       "-deprecation",
-      "-Wconf:any:warning-verbose",
-      "-Wdead-code",
-      "-Xlint:_,-missing-interpolator",
-      "-Xsource:3",
-      "-Xasync",
-      "-Xcheckinit"
+//      "-Wconf:any:warning-verbose",
+//      "-Wdead-code",
+//      "-Xlint:_,-missing-interpolator",
+//      "-Xcheckinit"
     )
   )
 )
