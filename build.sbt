@@ -1,5 +1,6 @@
 import org.openqa.selenium.chrome.ChromeOptions
 import org.scalajs.jsenv.selenium.SeleniumJSEnv
+import org.scalajs.linker.interface.ModuleSplitStyle
 
 inThisBuild(
   Seq(
@@ -7,7 +8,7 @@ inThisBuild(
     organization      := "com.github.mushtaq.scala-js-vite",
     organizationName  := "ThoughtWorks",
     scalafmtOnCompile := true,
-    scalaVersion      := "2.13.8",
+    scalaVersion      := "2.13.10",
     scalacOptions ++= Seq(
       "-encoding",
       "UTF-8",
@@ -32,11 +33,15 @@ lazy val example = project
   .enablePlugins(ScalaJSPlugin)
   .settings(
     scalaJSUseMainModuleInitializer := true,
-    scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.ESModule).withSourceMap(false) },
+    scalaJSLinkerConfig ~= {
+      _.withModuleKind(ModuleKind.ESModule)
+        .withSourceMap(false)
+        .withModuleSplitStyle(ModuleSplitStyle.SmallModulesFor(List("example")))
+    },
     Compile / jsEnv                 := seleniumConfig(Compile, port = 5173).value,
     Test / jsEnv                    := seleniumConfig(Test, port = 5173).value,
     libraryDependencies ++= Seq(
-      "org.scalatest" %%% "scalatest" % "3.2.11" % Test
+      "org.scalatest" %%% "scalatest" % "3.2.14" % Test
     )
   )
 

@@ -23,7 +23,7 @@ sbt:scala-js-vite> project example
 sbt:example> ~fastLinkJS
 ```
 
-Open http://localhost:3000/ and watch the console. 
+Open http://localhost:5173/ and watch the console. 
 
 Make changes in Main.scala and watch HMR(Hot Module Reloading) working in the console.
 
@@ -66,4 +66,4 @@ $ cd example/dist
 $ python3 -m http.server 4000
 ```
 
-Open http://localhost:3000/ and see the console.
+Open http://localhost:4000/ and see the console.
