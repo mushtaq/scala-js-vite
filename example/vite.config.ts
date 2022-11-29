@@ -14,7 +14,7 @@ const htmlPlugin = (): PluginOption => {
         name: "html-transform",
         enforce: 'pre',
         transform: (file, fileName) => {
-            return fileName.endsWith('.html') ? file.replace("-fastopt", "-opt") : file
+            return fileName.endsWith('index.html') ? file.replace("-fastopt", "-opt") : file
         }
     };
 };
