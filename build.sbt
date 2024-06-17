@@ -8,7 +8,7 @@ inThisBuild(
     organization      := "com.github.mushtaq.scala-js-vite",
     organizationName  := "ThoughtWorks",
     scalafmtOnCompile := true,
-    scalaVersion      := "3.2.1",
+    scalaVersion      := "3.4.2",
     scalacOptions ++= Seq(
       "-encoding",
       "UTF-8",
@@ -39,7 +39,7 @@ lazy val example = project
     Compile / jsEnv                 := seleniumConfig(Compile, port = 5173).value,
     Test / jsEnv                    := seleniumConfig(Test, port = 5173).value,
     libraryDependencies ++= Seq(
-      "org.scalatest" %%% "scalatest" % "3.2.14" % Test
+      "org.scalatest" %%% "scalatest" % "3.2.18" % Test
     )
   )
 
@@ -57,6 +57,9 @@ def seleniumConfig(sbtConfig: Configuration, port: Int) = Def.setting {
 
 lazy val headlessChrome = {
   import _root_.io.github.bonigarcia.wdm.WebDriverManager
-  WebDriverManager.chromedriver().setup()
+  WebDriverManager
+    .chromedriver()
+//    .browserVersion("126.0.6478.61")
+    .setup()
   new ChromeOptions().setHeadless(true)
 }
